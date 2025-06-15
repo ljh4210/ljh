@@ -356,7 +356,7 @@
         }
 
         .skill-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-2px);
             border-color: #FFD700;
             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.1);
         }
@@ -389,94 +389,208 @@
         }
 
         /* Projects Section */
-        .projects-container {
+         .section-white {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #333;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            gap: 30px;
         }
 
         .project-card {
-            background: #fff;
-            border-radius: 20px;
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1a1a2e, #FFD700);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 60px rgba(26, 26, 46, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .project-img {
+            position: relative;
             height: 200px;
-            background: linear-gradient(135deg, #1a1a2e, #000);
+            overflow: hidden;
+        }
+
+        .image-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+        }
+
+        .slider-container img.active {
+            opacity: 1;
+        }
+
+        .project-card:hover .slider-container img.active {
+            transform: scale(1.05);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #FFD700;
-            font-size: 4rem;
-            position: relative;
+            opacity: 0;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .project-shapes {
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .project-card:hover .slider-btn {
+            opacity: 1;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-dots {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .dot.active {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .project-info {
-            padding: 2rem;
+            padding: 25px;
         }
 
         .project-info h3 {
             font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
         }
 
         .project-info p {
             color: #666;
-            margin-bottom: 1.5rem;
             line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        .project-link {
-            display: inline-block;
-            padding: 10px 25px;
-            background: transparent;
-            color: #1a1a2e;
-            text-decoration: none;
-            border: 2px solid #1a1a2e;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .fade-in {
+            opacity: 1;
+            animation: fadeIn 0.8s ease-in;
         }
 
-        .project-link:hover {
-            background: #1a1a2e;
-            color: #FFD700;
-            transform: scale(1.05);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .project-info {
+                padding: 20px;
+            }
+
+            .slider-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+        }
+        
         /* Contact Section */
         .contact-container {
             max-width: 800px;
@@ -654,7 +768,7 @@
                     <div class="skill-card">
                         <div class="skill-icon">🛠️</div>
                         <h3>Tools</h3>
-                        <p>Ai, Ps, Pp, Af</p>
+                        <p>Ai, Ps, Pr, Ae</p>
                         <div class="skill-progress">
                             <div class="skill-bar" style="width: 80%"></div>
                         </div>
@@ -665,57 +779,113 @@
     </section>
 
     <section id="projects" class="section-white fade-in">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-container">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-img">
-                            <div class="project-shapes">🌟</div>
-                            🌐
-                        </div>
-                        <div class="project-info">
-                            <h3>스페이스바</h3>
-                            <p>모던한 디자인과 인터랙티브 기능을 갖춘 반응형 포트폴리오 웹사이트입니다.</p>
-                            <a href="#" class="project-link">자세히 보기</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-img">
-                            <div class="project-shapes">⭐</div>
-                            📱
-                        </div>
-                        <div class="project-info">
-                            <h3>지구별공방</h3>
-                            <p>React Native를 활용한 크로스 플랫폼 모바일 애플리케이션입니다.</p>
-                            <a href="#" class="project-link">자세히 보기</a>
+    <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-container">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <div class="image-slider">
+                            <div class="slider-container">
+                                <img src="spacebar.jpg" alt="스페이스바 프로젝트 1" class="active" />
+                                <img src="spacebar2.jpg" alt="스페이스바 프로젝트 2" />
+                                <img src="spacebar3.png" alt="스페이스바 프로젝트 3" />
+                            </div>
+                            <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)">‹</button>
+                            <button class="slider-btn next-btn" onclick="changeSlide(this, 1)">›</button>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                                <span class="dot" onclick="currentSlide(this, 2)"></span>
+                                <span class="dot" onclick="currentSlide(this, 3)"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-img">
-                            <div class="project-shapes">🪐</div>
-                            🛒
-                        </div>
-                        <div class="project-info">
-                            <h3>밥메이트</h3>
-                            <p>사용자 친화적인 인터페이스와 안전한 결제 시스템을 갖춘 쇼핑몰입니다.</p>
-                            <a href="#" class="project-link">자세히 보기</a>
+                    <div class="project-info">
+                        <h3>스페이스바</h3>
+                        <p>SF장르가 여전히 해외 국가들만의 전유물이 아님을, 국내 SF문학 위주로 소개하고 리뷰하며 알리고 싶었다. 
+                        좋은 작품들을 가볍게 들어보고 입문할 수 있도록, 이야기를 재구성하고 재미있게 소개하는 콘텐츠</p>
+
+                         <div class="project-links">
+                            <p></p>
+                            <a href="https://youtu.be/5FIzSVefwOM" class="project-link">🔗막 너머에 신이 있다면</a><br>
+                            <a href="https://youtu.be/11NHxdQlGYM" class="project-link">🔗스펙트럼</a><br>
+                            <a href="https://youtu.be/S2Rb3xYkxiU" class="project-link">🔗프로젝트헤일메리</a><br>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-img">
-                            <div class="project-shapes">🎨</div>
-                            🖥️
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <div class="image-slider">
+                            <div class="slider-container">
+                                <img src="지구.jpg" alt="지구별공방 프로젝트 1" class="active" />
+                                <img src="지구2.jpg" alt="지구별공방 프로젝트 2" />
+                                <img src="지구3.jpg" alt="지구별공방 프로젝트 3" />
+                            </div>
+                            <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)">‹</button>
+                            <button class="slider-btn next-btn" onclick="changeSlide(this, 1)">›</button>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                                <span class="dot" onclick="currentSlide(this, 2)"></span>
+                                <span class="dot" onclick="currentSlide(this, 3)"></span>
+                            </div>
                         </div>
-                        <div class="project-info">
-                            <h3>캐릭터 드로잉</h3>
-                            <p>기업의 아이덴티티를 반영한 완성도 높은 브랜딩 및 웹 디자인 프로젝트입니다.</p>
-                            <a href="#" class="project-link">자세히 보기</a>
+                    </div>
+                    <div class="project-info">
+                        <h3>지구별공방</h3>
+                        <p>늘어나는 이주민 인구수에 비해 이주민 인구에 대한 인식과 그들이 설 자리는 여전히 부족하다. 동등한 사회적 활동 참여를 격려할 수 있는 공간을 만들고자 하였다.
+                             이주민을과 함께 만들어 나가는 핸드메이드 제품 거래 플랫폼</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <div class="image-slider">
+                            <div class="slider-container">
+                                <img src="밥.png" alt="밥메이트 프로젝트 1" class="active" />
+                                <img src="밥2.png" alt="밥메이트 프로젝트 2" />
+                                <img src="밥3.png" alt="밥메이트 프로젝트 3" />
+                            </div>
+                            <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)">‹</button>
+                            <button class="slider-btn next-btn" onclick="changeSlide(this, 1)">›</button>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                                <span class="dot" onclick="currentSlide(this, 2)"></span>
+                                <span class="dot" onclick="currentSlide(this, 3)"></span>
+                            </div>
                         </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>밥메이트</h3>
+                        <p>사회적 연결 형성. 
+                            혼밥을 피하고 새로운 사람들과 자연스럽게 교류할 기회를 제공하는 서비스를 제공한다.
+</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <div class="image-slider">
+                            <div class="slider-container">
+                                <img src="캐릭터1.png" alt="캐릭터 드로잉 프로젝트 1" class="active" />
+                                <img src="캐릭터2.png" alt="캐릭터 드로잉 프로젝트 2" />
+                                <img src="캐릭터3.png" alt="캐릭터 드로잉 프로젝트 3" />
+                            </div>
+                            <button class="slider-btn prev-btn" onclick="changeSlide(this, -1)">‹</button>
+                            <button class="slider-btn next-btn" onclick="changeSlide(this, 1)">›</button>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                                <span class="dot" onclick="currentSlide(this, 2)"></span>
+                                <span class="dot" onclick="currentSlide(this, 3)"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>캐릭터 드로잉</h3>
+                        <p>캐릭터 드로잉 개인 작업물.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
     <section id="contact" class="section-dark fade-in">
@@ -734,8 +904,9 @@
                             <span>010-8441-8823</span>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">💼</div>
-                            <span>github.com/username</span>
+                            <div class="contact-icon">📍</div>
+                            <span>Busan, KyungSung University</span><br>
+                            
                         </div>
                     </div>
                 </div>
@@ -872,8 +1043,8 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
+                const rotateX = (y - centerY) / -40;
+                const rotateY = (centerX - x) / -40;
                 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
             });
@@ -889,6 +1060,45 @@
             createGeometricShapes();
             setTimeout(typeWriter, 1000);
         });
+          function changeSlide(button, direction) {
+            const slider = button.closest('.image-slider');
+            const images = slider.querySelectorAll('.slider-container img');
+            const dots = slider.querySelectorAll('.dot');
+            
+            let currentIndex = 0;
+            images.forEach((img, index) => {
+                if (img.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Remove active class from current image and dot
+            images[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            
+            // Calculate new index
+            let newIndex = currentIndex + direction;
+            if (newIndex >= images.length) newIndex = 0;
+            if (newIndex < 0) newIndex = images.length - 1;
+            
+            // Add active class to new image and dot
+            images[newIndex].classList.add('active');
+            dots[newIndex].classList.add('active');
+        }
+        
+        function currentSlide(dot, slideIndex) {
+            const slider = dot.closest('.image-slider');
+            const images = slider.querySelectorAll('.slider-container img');
+            const dots = slider.querySelectorAll('.dot');
+            
+            // Remove all active classes
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            // Add active class to selected slide
+            images[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active');
+        }
     </script>
 </body>
 </html>
